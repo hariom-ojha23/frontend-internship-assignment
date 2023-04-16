@@ -1,0 +1,15 @@
+.chip-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-left: 20px;
+
+  .chip-item {
+    padding: 10px 30px;
+    border-radius: 50px;
+    width: max-content;
+    background-color: #e5e5e5;
+    cursor: pointer;
+  }
+}

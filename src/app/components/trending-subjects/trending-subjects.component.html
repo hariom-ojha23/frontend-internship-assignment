@@ -1,6 +1,24 @@
+<div class="back-button-container" [routerLink]="'/'">
+  <mat-icon class="back-button">keyboard_arrow_left</mat-icon>
+  Back to Home
+</div>
+
 <div *ngIf="allBooks.length > 0">
   <front-end-internship-assignment-table-view
-  [booksList]="allBooks"
-  [subjectName]="subjectName"
+    [booksList]="allBooks"
+    [subjectName]="subjectName"
+    [parentName]="'Trending'"
   ></front-end-internship-assignment-table-view>
+</div>
+
+<div class="loader-container" *ngIf="isLoading">
+  <front-end-internship-assignment-loader></front-end-internship-assignment-loader>
+</div>
+
+<div class="no-result-container" *ngIf="noResult">
+  <img
+    class="no-result-img"
+    src="../../../assets/images/ro-result.jpg"
+    alt="no-result"
+  />
 </div>

@@ -1,23 +1,100 @@
 <div class="header">
   <div class="tw-text-24-px tw-font-600">Open Books Library</div>
   <div class="search-button">
-    <mat-icon class="tw-mt-16-px" aria-label="Search Icon">search</mat-icon>
+    <mat-icon
+      *ngIf="bookSearch.value === ''"
+      class="search-icon"
+      aria-label="Search Icon"
+    >
+      search
+    </mat-icon>
     <input
       [formControl]="bookSearch"
       name="searchKey"
-      type="text"
+      type="search"
       placeholder="Search Books"
-      class="tw-border-0 tw-bg-inherit"
+      class="tw-border-0 search-input"
+      (search)="searchBook()"
+    />
+    <mat-icon
+      *ngIf="bookSearch.value !== ''"
+      class="clear-icon"
+      aria-label="Clear Icon"
+      (click)="clearSearchText()"
     >
+      close
+    </mat-icon>
   </div>
 </div>
 <div class="tw-flex tw-flex-row tw-m-24-px">
   <section class="trending-subjects">
     <div class="tw-font-600 tw-text-24-px">Trending Subjects</div>
     <ul class="tw-list-none tw-pl-0">
-      <li class="tw-text-16-px tw-cursor-pointer tw-p-12-px" *ngFor="let subject of trendingSubjects" routerLink="/trending-subject/{{ subject.name }}">
+      <li
+        class="tw-text-16-px tw-cursor-pointer tw-p-12-px"
+        *ngFor="let subject of trendingSubjects"
+        routerLink="/trending-subject/{{ subject.name }}"
+      >
         {{ subject.name }}
       </li>
     </ul>
+  </section>
+
+  <section class="search-table-container">
+    <h2 *ngIf="showResult">Search Results for {{ bookSearch.value }}</h2>
+    <div class="table" *ngIf="searchBooksList.length > 0">
+      <front-end-internship-assignment-table-view
+        [booksList]="searchBooksList"
+        [parentName]="'Home'"
+      ></front-end-internship-assignment-table-view>
+    </div>
+
+    <div *ngIf="searchBooksList.length > 0">
+      <front-end-internship-assignment-pagination
+        (selectPage)="selectPage($event)"
+        (setStart)="setStart($event)"
+        [total]="total"
+        [start]="start"
+        [currPage]="pageNumber"
+      ></front-end-internship-assignment-pagination>
+    </div>
+
+    <div *ngIf="noResult">
+      <img
+        class="no-result-img"
+        src="../../../assets/images/ro-result.jpg"
+        alt="no-result"
+      />
+    </div>
+    <div class="loader-container" *ngIf="isLoading">
+      <front-end-internship-assignment-loader></front-end-internship-assignment-loader>
+    </div>
+
+    <div
+      *ngIf="searchBooksList.length === 0 && !isLoading && !noResult"
+      class="popular-searches"
+    >
+      <h2>Popular Searches:</h2>
+      <front-end-internship-assignment-chip-list
+        [searchList]="popularSearches"
+        (clickChip)="onClickChips($event)"
+      ></front-end-internship-assignment-chip-list>
+    </div>
+
+    <div
+      *ngIf="
+        !noResult &&
+        searchBooksList.length === 0 &&
+        recentSearches.length !== 0 &&
+        !isLoading
+      "
+      class="recent-searches"
+    >
+      <h2>Recent Searches:</h2>
+      <front-end-internship-assignment-chip-list
+        [searchList]="recentSearches"
+        (clickChip)="onClickChips($event)"
+      ></front-end-internship-assignment-chip-list>
+    </div>
   </section>
 </div>

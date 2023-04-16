@@ -20,6 +20,7 @@ module.exports = {
     fontSize: {
       '14-px': '14px',
       '16-px': '16px',
+      '20-px': '20px',
       '24-px': '24px',
     },
     extend: {
@@ -45,10 +46,13 @@ module.exports = {
       },
       height: {
         '40-px': '40px',
+        '50-px': '50px',
         '60-px': '60px'
       },
       width: {
-        '200-px': '200px'
+        '200-px': '200px',
+        '250-px': '250px',
+        '300-px': '300px',
       }
     },
   },

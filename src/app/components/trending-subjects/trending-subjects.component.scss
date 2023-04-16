@@ -1,0 +1,33 @@
+.loader-container,
+.no-result-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-result-img {
+  width: 350px;
+}
+
+.back-button-container {
+  padding: 20px 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  width: max-content;
+
+  .back-button {
+    font-size: 30px;
+    border: 2px solid black;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    padding: 10px;
+  }
+}

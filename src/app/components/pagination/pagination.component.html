@@ -1,0 +1,13 @@
+<ul class="pagination">
+  <li (click)="onClickPrev()">
+    <button [disabled]="start === 1" class="page-link icon-btn">&laquo;</button>
+  </li>
+  <li *ngFor="let x of range(start)" (click)="onClickNumber(x - 1)">
+    <button [class]="currPage === x ? 'page-link active' : 'page-link'">
+      {{x}}
+    </button>
+  </li>
+  <li (click)="onClickNext()">
+    <button [disabled]="start === total - (total % totalBox) + 1" class="page-link icon-btn">&raquo;</button>
+  </li>
+</ul>
